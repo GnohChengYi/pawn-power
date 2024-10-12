@@ -1,7 +1,6 @@
 package com.example.pawnpower;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -36,24 +35,33 @@ public class ConsoleGame {
     public void play() {
         System.out.println("play");
         Scanner scanner = new Scanner(System.in);
+        System.out.println(game.board);
+        if (game.isEnded()) return;
         while (true) {
-            System.out.println(game.board);
             System.out.println("\nEnter move (e.g., e2-e4) or END:");
             String move = scanner.nextLine().trim();
             if (move.equals("END")) break;
             if (!makeMove(move)) {
                 System.out.println("Invalid move. Try again.");
+                continue;
             }
+            System.out.println(game.board);
+            if (game.isEnded()) break;
         }
     }
 
     // Format e.g. e2-e4
     private boolean makeMove(String move) {
-        int startX = move.charAt(0) - 'a';
-        int startY = Integer.parseInt(move.substring(1, 2)) - 1;
-        int endX = move.charAt(3) - 'a';
-        int endY = Integer.parseInt(move.substring(4, 5)) - 1;
-        return game.makeMove(startX, startY, endX, endY);
+        try {
+            int startX = move.charAt(0) - 'a';
+            int startY = Integer.parseInt(move.substring(1, 2)) - 1;
+            int endX = move.charAt(3) - 'a';
+            int endY = Integer.parseInt(move.substring(4, 5)) - 1;
+            return game.makeMove(startX, startY, endX, endY);
+        } catch (Exception e) {
+            System.out.println("Exception: " + e.getMessage());
+            return false;
+        }
     }
 
     public static void main(String[] args) {
