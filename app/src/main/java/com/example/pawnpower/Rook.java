@@ -2,21 +2,15 @@ package com.example.pawnpower;
 
 //import androidx.annotation.NonNull;
 
-public class King extends Piece {
-    public King(Color color) {
-        super(color, "K");
+public class Rook extends Piece {
+    public Rook(Color color) {
+        super(color, "R");
     }
 
     @Override
     public boolean isValidMove(int startX, int startY, int endX, int endY) {
-        // Ignores castling
-
         int dx = Math.abs(endX - startX);
         int dy = Math.abs(endY - startY);
-
-        return dx <= 1 && dy <= 1;
+        return (dx == 0 && dy > 0) || (dy == 0 && dx > 0);
     }
 }
-
-
-// TODO Similar implementations for Pawn

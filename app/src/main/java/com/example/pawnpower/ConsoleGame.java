@@ -1,5 +1,9 @@
 package com.example.pawnpower;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ConsoleGame {
@@ -10,13 +14,19 @@ public class ConsoleGame {
         Player blackPlayer = new Player(Color.BLACK);
         game = new Game(whitePlayer, blackPlayer);
 
+        ArrayList<Piece> availablePieces = new ArrayList<>(List.of(new King(Color.WHITE),
+                new King(Color.BLACK), new Queen(Color.WHITE), new Queen(Color.BLACK),
+                new Bishop(Color.WHITE), new Bishop(Color.BLACK), new Knight(Color.WHITE),
+                new Knight(Color.BLACK), new Rook(Color.WHITE), new Rook(Color.BLACK)));
+        Random random = new Random();
+
         for (int i = 0; i < Board.SIZE; i++) {
             for (int j = 0; j < Board.SIZE; j++) {
-                double randomNumber = Math.random();
-                if (randomNumber > 0.9) {  // TODO change position setup
-                    game.board.setPiece(new King(Color.WHITE), i, j);
-                } else if (randomNumber > 0.8) {
-                    game.board.setPiece(new King(Color.BLACK), i, j);
+                // TODO replace setup logic
+                if (random.nextFloat() < 0.2 && !availablePieces.isEmpty()) {
+                    int randomIndex = random.nextInt(availablePieces.size());
+                    Piece randomPiece = availablePieces.remove(randomIndex);
+                    game.board.setPiece(randomPiece, i, j);
                 }
             }
         }

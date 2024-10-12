@@ -11,7 +11,6 @@ public class Board {
 
     private void initializeBoard() {
         board = new Piece[SIZE][SIZE];
-        // TODO Initialize pieces (white and black)
     }
 
     public void setPiece(Piece piece, int x, int y) {
@@ -44,6 +43,11 @@ public class Board {
             System.out.println("Invalid move by piece");
             return false;
         }
+        // ignores castling
+        if (existsPieceBetween(startX, startY, endX, endY)) {
+            System.out.println("Other piece between start and end");
+            return false;
+        }
         return !isSelfColorCheckAfterMove(startX, startY, endX, endY);
     }
 
@@ -61,6 +65,50 @@ public class Board {
             return false;
         }
         return startPiece.color == endPiece.color;
+    }
+
+    private boolean existsPieceBetween(int startX, int startY, int endX, int endY) {
+        // knight probably already handled because it's path is neither straight or diagonal
+        if (isXYBlocked(startX, startY, endX, endY)) return true;
+        return isDiagonalBlocked(startX, startY, endX, endY);
+    }
+
+    private boolean isXYBlocked(int startX, int startY, int endX, int endY) {
+        if (startX == endX) {
+            int smallY = Math.min(startY, endY);
+            int largeY = Math.max(startY, endY);
+            for (int y = smallY + 1; y < largeY; y++) {
+                if (board[startX][y] != null) return true;
+            }
+        }
+        if (startY == endY) {
+            int smallX = Math.min(startX, endX);
+            int largeX = Math.max(startX, endX);
+            for (int x = smallX + 1; x < largeX; x++) {
+                if (board[x][startY] != null) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isDiagonalBlocked(int startX, int startY, int endX, int endY) {
+        int dx = Math.abs(endX - startX);
+        int dy = Math.abs(endY - startY);
+
+        if (dx != dy) return false; // not diagonal
+
+        int smallX = Math.min(startX, endX);
+        int largeX = Math.max(startX, endX);
+        int smallY = Math.min(startY, endY);
+        int largeY = Math.max(startY, endY);
+
+        for (int x = smallX + 1; x < largeX; x++) {
+            for (int y = smallY + 1; y < largeY; y++) {
+                if (board[x][y] != null) return true;
+            }
+        }
+
+        return false;
     }
 
     private boolean isSelfColorCheckAfterMove(int startX, int startY, int endX, int endY) {
