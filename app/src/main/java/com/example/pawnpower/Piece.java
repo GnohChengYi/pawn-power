@@ -9,5 +9,5 @@ public abstract class Piece {
         this.type = type;
     }
 
-    public abstract boolean isValidMove(Board board, int startX, int startY, int endX, int endY);
+    public abstract boolean isValidMove(int startX, int startY, int endX, int endY);
 }
