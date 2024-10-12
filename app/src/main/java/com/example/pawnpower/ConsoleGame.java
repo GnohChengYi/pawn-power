@@ -17,7 +17,8 @@ public class ConsoleGame {
         ArrayList<Piece> availablePieces = new ArrayList<>(List.of(new King(Color.WHITE),
                 new King(Color.BLACK), new Queen(Color.WHITE), new Queen(Color.BLACK),
                 new Bishop(Color.WHITE), new Bishop(Color.BLACK), new Knight(Color.WHITE),
-                new Knight(Color.BLACK), new Rook(Color.WHITE), new Rook(Color.BLACK)));
+                new Knight(Color.BLACK), new Rook(Color.WHITE), new Rook(Color.BLACK),
+                new Pawn(Color.WHITE), new Pawn(Color.BLACK)));
         Random random = new Random();
 
         for (int i = 0; i < Board.SIZE; i++) {

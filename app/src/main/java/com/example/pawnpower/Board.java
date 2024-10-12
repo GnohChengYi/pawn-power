@@ -35,19 +35,28 @@ public class Board {
             System.out.println("No piece at start position");
             return false;
         }
-        if (sameColorEndPiece(startPiece, endX, endY)) {
-            System.out.println("Start piece is same color as end piece");
-            return false;
-        }
-        if (!startPiece.isValidMove(startX, startY, endX, endY)) {
-            System.out.println("Invalid move by piece");
-            return false;
-        }
         // ignores castling
-        if (existsPieceBetween(startX, startY, endX, endY)) {
-            System.out.println("Other piece between start and end");
+        if (isPathBlocked(startX, startY, endX, endY)) {
+            System.out.println("Other piece blocking path");
             return false;
         }
+        Piece endPiece = getPiece(endX, endY);
+        if (endPiece == null) {
+            if (!startPiece.isValidMove(startX, startY, endX, endY)) {
+                System.out.println("Invalid move by piece");
+                return false;
+            }
+        } else {
+            if (startPiece.color == endPiece.color) {
+                System.out.println("Cannot capture piece of the same color");
+                return false;
+            }
+            if (!startPiece.isValidCapture(startX, startY, endX, endY)) {
+                System.out.println("Invalid capture move by piece");
+                return false;
+            }
+        }
+
         return !isSelfColorCheckAfterMove(startX, startY, endX, endY);
     }
 
@@ -59,15 +68,7 @@ public class Board {
         return startX == endX && startY == endY;
     }
 
-    private boolean sameColorEndPiece(Piece startPiece, int endX, int endY) {
-        Piece endPiece = getPiece(endX, endY);
-        if (endPiece == null) {
-            return false;
-        }
-        return startPiece.color == endPiece.color;
-    }
-
-    private boolean existsPieceBetween(int startX, int startY, int endX, int endY) {
+    private boolean isPathBlocked(int startX, int startY, int endX, int endY) {
         // knight probably already handled because it's path is neither straight or diagonal
         if (isXYBlocked(startX, startY, endX, endY)) return true;
         return isDiagonalBlocked(startX, startY, endX, endY);
