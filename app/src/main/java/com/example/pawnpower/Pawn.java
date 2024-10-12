@@ -3,8 +3,14 @@ package com.example.pawnpower;
 //import androidx.annotation.NonNull;
 
 public class Pawn extends Piece {
+
     public Pawn(Color color) {
-        super(color, "P");
+        super(color);
+    }
+
+    @Override
+    public char getSymbol() {
+        return 'P';
     }
 
     @Override

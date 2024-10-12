@@ -2,12 +2,12 @@ package com.example.pawnpower;
 
 public abstract class Piece {
     protected Color color;
-    protected String symbol;
 
-    public Piece(Color color, String symbol) {
+    public Piece(Color color) {
         this.color = color;
-        this.symbol = symbol;
     }
+
+    public abstract char getSymbol();
 
     public abstract boolean isValidMove(int startX, int startY, int endX, int endY);
 
@@ -17,6 +17,9 @@ public abstract class Piece {
 
     @Override
     public String toString() {
-        return color == Color.WHITE ? symbol.toUpperCase() : symbol.toLowerCase();
+        String symbolStr = Character.toString(getSymbol());
+        String whiteSymbol = symbolStr.toUpperCase();
+        String blackSymbol = symbolStr.toLowerCase();
+        return color == Color.WHITE ? whiteSymbol : blackSymbol;
     }
 }

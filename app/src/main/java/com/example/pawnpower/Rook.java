@@ -4,7 +4,12 @@ package com.example.pawnpower;
 
 public class Rook extends Piece {
     public Rook(Color color) {
-        super(color, "R");
+        super(color);
+    }
+
+    @Override
+    public char getSymbol() {
+        return 'R';
     }
 
     @Override
