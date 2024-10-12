@@ -14,6 +14,7 @@ public class Board {
     }
 
     public void setPiece(Piece piece, int x, int y) {
+        // TODO think of a way to enforce exactly one King of each Color
         board[x][y] = piece;
     }
 
@@ -56,8 +57,12 @@ public class Board {
                 return false;
             }
         }
+        if (isSelfColorCheckedAfterMove(startX, startY, endX, endY)) {
+            System.out.println("Own color getting checked after move");
+            return false;
+        }
 
-        return !isSelfColorCheckAfterMove(startX, startY, endX, endY);
+        return true;
     }
 
     private boolean isOutOfBoard(int x, int y) {
@@ -66,6 +71,60 @@ public class Board {
 
     private static boolean startSameAsEnd(int startX, int startY, int endX, int endY) {
         return startX == endX && startY == endY;
+    }
+
+    private boolean isSelfColorCheckedAfterMove(int startX, int startY, int endX, int endY) {
+        Piece movingPiece = getPiece(startX, startY);
+        Piece originalEndPiece = getPiece(endX, endY);
+        Color movingColor = movingPiece.color;
+
+        // simulate by moving the piece first, then undo
+        board[startX][startY] = null;
+        board[endX][endY] = movingPiece;
+
+        int[] kingXY = getKingPosition(movingColor);
+        if (kingXY == null) {
+            System.out.println("Cannot find King of color " + movingColor);
+            return false;
+        }
+        int kingX = kingXY[0];
+        int kingY = kingXY[1];
+
+        for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
+                Piece piece = board[x][y];
+                if (piece == null || piece.color == movingPiece.color) continue;
+                if (isPathBlocked(x, y, kingX, kingY)) continue;
+                if (piece.isValidCapture(x, y, kingX, kingY)) {
+                    // undo moving
+                    board[startX][startY] = movingPiece;
+                    board[endX][endY] = originalEndPiece;
+                    return true;
+                }
+            }
+        }
+
+        // undo moving (this validation method should not actually move piece)
+        board[startX][startY] = movingPiece;
+        board[endX][endY] = originalEndPiece;
+
+        return false;
+    }
+
+    // returns only the first King found
+    private int[] getKingPosition(Color movingColor) {
+        King dummyKing = new King(Color.WHITE);
+        char kingSymbol = dummyKing.getSymbol();
+        for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
+                Piece piece = board[x][y];
+                if (piece == null || piece.color != movingColor) continue;
+                if (piece.getSymbol() == kingSymbol) {
+                    return new int[]{x, y};
+                }
+            }
+        }
+        return null;
     }
 
     private boolean isPathBlocked(int startX, int startY, int endX, int endY) {
@@ -110,11 +169,6 @@ public class Board {
         }
 
         return false;
-    }
-
-    private boolean isSelfColorCheckAfterMove(int startX, int startY, int endX, int endY) {
-        // TODO check every opponent piece
-        return false; // Placeholder
     }
 
     @Override

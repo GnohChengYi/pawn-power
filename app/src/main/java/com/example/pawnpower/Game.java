@@ -55,6 +55,7 @@ public class Game {
         }
         if (!board.isValidMove(startX, startY, endX, endY)) {
 //            Log.d("Game", "Invalid move");
+            System.out.println("Invalid move from board");
             return false;
         }
         return true;
