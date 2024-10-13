@@ -63,4 +63,8 @@ class BoardSetup (val gs: GameScreen) {
             }
         }
     }
+
+    fun deletePiece(selectedSquare: ImageView) {
+        selectedSquare.setImageDrawable(null)
+    }
 }

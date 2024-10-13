@@ -2,6 +2,7 @@ package com.example.pawnpower
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -122,7 +123,7 @@ class GameScreen : AppCompatActivity() {
         val r76: ImageView = findViewById(R.id.R76)
         val r77: ImageView = findViewById(R.id.R77)
 
-        var selectedSquare: ImageView
+        var selectedSquare: ImageView = r00
 
         r00.setOnClickListener {
             selectedSquare = r00
@@ -442,6 +443,12 @@ class GameScreen : AppCompatActivity() {
         r77.setOnClickListener {
             selectedSquare = r77
             gameScreen.addPiece(selectedSquare)
+        }
+
+        val deleteButton: ImageButton = findViewById(R.id.deleteButton)
+
+        deleteButton.setOnClickListener {
+            gameScreen.deletePiece(selectedSquare)
         }
     }
 }
