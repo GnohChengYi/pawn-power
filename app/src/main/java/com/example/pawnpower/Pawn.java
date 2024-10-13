@@ -14,6 +14,11 @@ public class Pawn extends Piece {
     }
 
     @Override
+    public int getPoints() {
+        return 1;
+    }
+
+    @Override
     public boolean isValidMove(int startX, int startY, int endX, int endY) {
         int dir = getDirection();
         // ignore en passant and cannot move two squares at first move

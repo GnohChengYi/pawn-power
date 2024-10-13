@@ -13,6 +13,11 @@ public class King extends Piece {
     }
 
     @Override
+    public int getPoints() {
+        return 0;
+    }
+
+    @Override
     public boolean isValidMove(int startX, int startY, int endX, int endY) {
         // Ignores castling
 
@@ -22,6 +27,3 @@ public class King extends Piece {
         return dx <= 1 && dy <= 1;
     }
 }
-
-
-// TODO Similar implementations for Pawn

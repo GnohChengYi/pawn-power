@@ -1,40 +1,53 @@
 package com.example.pawnpower;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class ConsoleGame {
     private final Game game;
+    private final Scanner scanner = new Scanner(System.in);
 
     public ConsoleGame() {
         Player whitePlayer = new Player(Color.WHITE);
         Player blackPlayer = new Player(Color.BLACK);
         game = new Game(whitePlayer, blackPlayer);
 
-        ArrayList<Piece> availablePieces = new ArrayList<>(List.of(new King(Color.WHITE),
-                new King(Color.BLACK), new Queen(Color.WHITE), new Queen(Color.BLACK),
-                new Bishop(Color.WHITE), new Bishop(Color.BLACK), new Knight(Color.WHITE),
-                new Knight(Color.BLACK), new Rook(Color.WHITE), new Rook(Color.BLACK),
-                new Pawn(Color.WHITE), new Pawn(Color.BLACK)));
-        Random random = new Random();
+        System.out.println("\nMaximum points for each side (e.g. 39):");
+        int maxPoints = scanner.nextInt();
+        scanner.nextLine();
 
-        for (int i = 0; i < Board.SIZE; i++) {
-            for (int j = 0; j < Board.SIZE; j++) {
-                // TODO replace setup logic
-                if (random.nextFloat() < 0.2 && !availablePieces.isEmpty()) {
-                    int randomIndex = random.nextInt(availablePieces.size());
-                    Piece randomPiece = availablePieces.remove(randomIndex);
-                    game.board.setPiece(randomPiece, i, j);
-                }
+        setUpPosition(Color.WHITE, maxPoints);
+        setUpPosition(Color.BLACK, maxPoints);
+    }
+
+    private void setUpPosition(Color color, int maxPoints) {
+        int remainingPoints = maxPoints;
+        int startY = (color == Color.WHITE) ? 0 : (Board.SIZE / 2);
+        int endY = (color == Color.WHITE) ? (Board.SIZE / 2) : Board.SIZE;  // exclusive
+        Random random = new Random();
+        List<Piece> nonKingPieces = List.of(new Queen(color), new Bishop(color),
+                new Knight(color), new Rook(color), new Pawn(color));
+
+        for (int x = 0; x < Board.SIZE; x++) {
+            if (remainingPoints < 0) break;
+            for (int y = startY; y < endY; y++) {
+                if (random.nextFloat() > 0.2) continue; // randomly skip squares
+                int randomIndex = random.nextInt(nonKingPieces.size());
+                Piece randomPiece = nonKingPieces.get(randomIndex);
+                int points = randomPiece.getPoints();
+                if (points > remainingPoints) break;
+                remainingPoints -= points;
+                game.board.setPiece(randomPiece, x, y);
             }
         }
+
+        King king = new King(color);
+        game.board.setPiece(king, 0, startY);   // will overwrite (0,startY), but don't care
     }
 
     public void play() {
         System.out.println("play");
-        Scanner scanner = new Scanner(System.in);
         System.out.println(game.board);
         if (game.isEnded()) return;
         while (true) {
@@ -48,6 +61,7 @@ public class ConsoleGame {
             System.out.println(game.board);
             if (game.isEnded()) break;
         }
+        scanner.close();
     }
 
     // Format e.g. e2-e4
