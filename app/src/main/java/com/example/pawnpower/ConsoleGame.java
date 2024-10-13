@@ -16,8 +16,8 @@ public class ConsoleGame {
         int maxPoints = scanner.nextInt();
         scanner.nextLine();
 
-        setUpPosition(Color.WHITE, maxPoints);
-        setUpPosition(Color.BLACK, maxPoints);
+        setUpPosition(Color.WHITE, maxPoints);  // for human
+        ai.setUpPosition(game, Color.BLACK, maxPoints);   // for AI
     }
 
     private void setUpPosition(Color color, int maxPoints) {

@@ -1,9 +1,35 @@
 package com.example.pawnpower;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class AI {
+    public void setUpPosition(Game game, Color color, int maxPoints) {
+        int remainingPoints = maxPoints;
+        int startY = (color == Color.WHITE) ? 0 : (Board.SIZE / 2);
+        int endY = (color == Color.WHITE) ? (Board.SIZE / 2) : Board.SIZE;  // exclusive
+        Random random = new Random();
+        List<Piece> nonKingPieces = List.of(new Queen(color), new Bishop(color),
+                new Knight(color), new Rook(color), new Pawn(color));
+
+        for (int x = 0; x < Board.SIZE; x++) {
+            if (remainingPoints < 0) break;
+            for (int y = startY; y < endY; y++) {
+                if (random.nextFloat() > 0.7) continue; // randomly skip squares
+                int randomIndex = random.nextInt(nonKingPieces.size());
+                Piece randomPiece = nonKingPieces.get(randomIndex);
+                int points = randomPiece.getPoints();
+                if (points > remainingPoints) break;
+                remainingPoints -= points;
+                game.board.setPiece(randomPiece, x, y);
+            }
+        }
+
+        King king = new King(color);
+        game.board.setPiece(king, 0, startY);   // will overwrite (0,startY), but don't care
+    }
+
     public void makeMove(Game game) {
         ArrayList<int[]> validMoves = new ArrayList<>();
 
