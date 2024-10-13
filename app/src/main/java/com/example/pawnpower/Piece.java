@@ -9,6 +9,8 @@ public abstract class Piece {
 
     public abstract char getSymbol();
 
+    public abstract int getPoints();
+
     public abstract boolean isValidMove(int startX, int startY, int endX, int endY);
 
     public boolean isValidCapture(int startX, int startY, int endX, int endY) {

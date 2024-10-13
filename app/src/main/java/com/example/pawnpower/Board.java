@@ -112,13 +112,13 @@ public class Board {
     }
 
     // returns only the first King found
-    public int[] getKingPosition(Color movingColor) {
-        King dummyKing = new King(Color.WHITE);
+    public int[] getKingPosition(Color color) {
+        King dummyKing = new King(color);
         char kingSymbol = dummyKing.getSymbol();
         for (int x = 0; x < SIZE; x++) {
             for (int y = 0; y < SIZE; y++) {
                 Piece piece = board[x][y];
-                if (piece == null || piece.color != movingColor) continue;
+                if (piece == null || piece.color != color) continue;
                 if (piece.getSymbol() == kingSymbol) {
                     return new int[]{x, y};
                 }

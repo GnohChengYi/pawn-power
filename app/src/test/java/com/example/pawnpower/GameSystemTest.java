@@ -9,7 +9,7 @@ import org.junit.Test;
 public class GameSystemTest {
     @Test
     public void testBasicValidMove() {
-        Game game = new Game(new Player(Color.WHITE), new Player(Color.BLACK));
+        Game game = new Game();
         Piece king = new King(Color.WHITE);
         game.board.setPiece(king, 0, 0);
 
@@ -20,7 +20,7 @@ public class GameSystemTest {
 
     @Test
     public void testBasicInvalidMove() {
-        Game game = new Game(new Player(Color.WHITE), new Player(Color.BLACK));
+        Game game = new Game();
         Piece king = new King(Color.WHITE);
         game.board.setPiece(king, 0, 0);
 

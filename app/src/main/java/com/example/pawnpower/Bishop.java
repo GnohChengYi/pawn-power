@@ -13,6 +13,11 @@ public class Bishop extends Piece {
     }
 
     @Override
+    public int getPoints() {
+        return 3;
+    }
+
+    @Override
     public boolean isValidMove(int startX, int startY, int endX, int endY) {
         int dx = Math.abs(endX - startX);
         int dy = Math.abs(endY - startY);
