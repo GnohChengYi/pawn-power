@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6B6B6B"
+    tools:context=".GameScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="20dp">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/R00"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R10"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R20"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R30"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R40"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R50"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R60"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R70"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/R01"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R11"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R21"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R31"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R41"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R51"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R61"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R71"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/R02"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R12"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R22"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R32"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R42"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R52"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R62"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R72"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/R03"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R13"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R23"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R33"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R43"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R53"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R63"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R73"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/R04"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R14"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R24"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R34"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R44"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R54"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R64"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R74"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/R05"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R15"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R25"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R35"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R45"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R55"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R65"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R75"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/R06"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R16"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R26"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R36"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R46"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R56"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R66"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R76"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/R07"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R17"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R27"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R37"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R47"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R57"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+
+                <TextView
+                    android:id="@+id/R67"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardDark" />
+
+                <TextView
+                    android:id="@+id/R77"
+                    android:layout_width="@string/bsize"
+                    android:layout_height="@string/bsize"
+                    android:background="@color/colorBoardLight" />
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4D4D4D"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/setupText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
+                android:text="Board Setup"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/pointsText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
+                android:text="Points: 39"
+                android:textAlignment="textEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/selectPawnImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/w_pawn" />
+
+            <ImageView
+                android:id="@+id/selectKnightImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="white knight"
+                app:srcCompat="@drawable/w_knight" />
+
+            <ImageView
+                android:id="@+id/selectBishopImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="white bishop"
+                app:srcCompat="@drawable/w_bishop" />
+
+            <ImageView
+                android:id="@+id/selectRookImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="white rook"
+                app:srcCompat="@drawable/w_rook" />
+
+            <ImageView
+                android:id="@+id/selectQueenImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="white queen"
+                app:srcCompat="@drawable/w_queen" />
+
+            <ImageView
+                android:id="@+id/selectKingImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="white king"
+                app:srcCompat="@drawable/w_king" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#4D4D4D"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/WhiteBlackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="3"
+                android:background="#6A6A6A"
+                android:fontFamily="sans-serif-black"
+                android:text="White"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="#6A6A6A"
+                android:contentDescription="Restart button"
+                app:srcCompat="@android:drawable/ic_popup_sync" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="#6A6A6A"
+                android:contentDescription="Delete button"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
