@@ -15,6 +15,8 @@ class BoardSetup (val gs: GameScreen) {
 
     private var isWhite: Boolean = true
 
+    var currentPiece: String = "pawn"
+
     fun setSide() {
         isWhite = !isWhite
         if (isWhite) {
@@ -24,7 +26,7 @@ class BoardSetup (val gs: GameScreen) {
             rookSelect.setImageResource(R.drawable.w_rook)
             queenSelect.setImageResource(R.drawable.w_queen)
             kingSelect.setImageResource(R.drawable.w_king)
-            sideSelect.text = "WHITE"
+            sideSelect.text = gs.getString(R.string.white)
             sideSelect.setTextColor(ContextCompat.getColor(gs, R.color.colorBoardDark))
             sideSelect.setBackgroundColor(ContextCompat.getColor(gs, R.color.colorBoardLight))
         } else {
@@ -34,9 +36,31 @@ class BoardSetup (val gs: GameScreen) {
             rookSelect.setImageResource(R.drawable.b_rook)
             queenSelect.setImageResource(R.drawable.b_queen)
             kingSelect.setImageResource(R.drawable.b_king)
-            sideSelect.text = "BLACK"
+            sideSelect.text = gs.getString(R.string.black)
             sideSelect.setTextColor(ContextCompat.getColor(gs, R.color.colorBoardLight))
             sideSelect.setBackgroundColor(ContextCompat.getColor(gs, R.color.colorBoardDark))
+        }
+    }
+
+    fun addPiece(selectedSquare: ImageView) {
+        if (isWhite) {
+            when (currentPiece) {
+                "pawn" -> selectedSquare.setImageResource(R.drawable.w_pawn)
+                "knight" -> selectedSquare.setImageResource(R.drawable.w_knight)
+                "bishop" -> selectedSquare.setImageResource(R.drawable.w_bishop)
+                "rook" -> selectedSquare.setImageResource(R.drawable.w_rook)
+                "queen" -> selectedSquare.setImageResource(R.drawable.w_queen)
+                "king" -> selectedSquare.setImageResource(R.drawable.w_king)
+            }
+        } else {
+            when (currentPiece) {
+                "pawn" -> selectedSquare.setImageResource(R.drawable.b_pawn)
+                "knight" -> selectedSquare.setImageResource(R.drawable.b_knight)
+                "bishop" -> selectedSquare.setImageResource(R.drawable.b_bishop)
+                "rook" -> selectedSquare.setImageResource(R.drawable.b_rook)
+                "queen" -> selectedSquare.setImageResource(R.drawable.b_queen)
+                "king" -> selectedSquare.setImageResource(R.drawable.b_king)
+            }
         }
     }
 }

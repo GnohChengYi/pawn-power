@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Pawn Power</string>
+    <string name="white">White</string>
+    <string name="black">Black</string>
+    <string name="clear_board_button">Clear Board button</string>
+    <string name="delete_button">Delete button</string>
+    <string name="king">King</string>
+    <string name="queen">Queen</string>
+    <string name="rook">Rook</string>
+    <string name="bishop">Bishop</string>
+    <string name="knight">Knight</string>
+    <string name="pawn">Pawn</string>
+    <string name="new_game">New Game</string>
+    <string name="credits">Credits</string>
+    <string name="pawn_power">Pawn Power</string>
+    <string name="pawn_power_logo">Pawn Power Logo (A Pawn)</string>
+    <string name="board_setup">Board Setup</string>
+    <string name="initial_points">Points: 39</string>
 </resources>
