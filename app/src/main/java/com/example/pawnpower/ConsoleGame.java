@@ -31,7 +31,7 @@ public class ConsoleGame {
         for (int x = 0; x < Board.SIZE; x++) {
             if (remainingPoints < 0) break;
             for (int y = startY; y < endY; y++) {
-                if (random.nextFloat() > 0.2) continue; // randomly skip squares
+                if (random.nextFloat() > 0.5) continue; // randomly skip squares
                 int randomIndex = random.nextInt(nonKingPieces.size());
                 Piece randomPiece = nonKingPieces.get(randomIndex);
                 int points = randomPiece.getPoints();
