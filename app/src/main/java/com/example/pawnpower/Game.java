@@ -4,14 +4,10 @@ package com.example.pawnpower;
 
 public class Game {
     public final Board board;
-    private final Player whitePlayer;
-    private final Player blackPlayer;
     private Color currentColor;
 
-    public Game(Player whitePlayer, Player blackPlayer) {
+    public Game() {
         board = new Board();
-        this.whitePlayer = whitePlayer;
-        this.blackPlayer = blackPlayer;
         this.currentColor = Color.WHITE;
     }
 
@@ -29,7 +25,7 @@ public class Game {
 
         Piece piece = board.getPiece(startX, startY);
         board.setPiece(null, startX, startY);
-        if (canQueen(piece, endX, endY)) {
+        if (canQueen(piece, endY)) {
             piece = new Queen(piece.color);
         }
         board.setPiece(piece, endX, endY);
@@ -38,7 +34,7 @@ public class Game {
         return true;
     }
 
-    private boolean canQueen(Piece piece, int x, int y) {
+    private boolean canQueen(Piece piece, int y) {
         Pawn dummyPawn = new Pawn(Color.WHITE);
         if (piece.getSymbol() != dummyPawn.getSymbol()) return false;
         if (piece.color == Color.WHITE) return y == Board.SIZE - 1;
@@ -74,7 +70,7 @@ public class Game {
         return false;
     }
 
-    private boolean isValidMove(int startX, int startY, int endX, int endY) {
+    public boolean isValidMove(int startX, int startY, int endX, int endY) {
 //        Log.d("Game", String.format("validating move (%d, %d) -> (%d, %d)", startX, startY,
 //        endX, endY));
 //        System.out.printf("Validating move (%d,%d) -> (%d,%d)\n", startX, startY, endX, endY);

@@ -7,11 +7,10 @@ import java.util.Scanner;
 public class ConsoleGame {
     private final Game game;
     private final Scanner scanner = new Scanner(System.in);
+    private final AI ai = new AI();
 
     public ConsoleGame() {
-        Player whitePlayer = new Player(Color.WHITE);
-        Player blackPlayer = new Player(Color.BLACK);
-        game = new Game(whitePlayer, blackPlayer);
+        game = new Game();
 
         System.out.println("\nMaximum points for each side (e.g. 39):");
         int maxPoints = scanner.nextInt();
@@ -59,6 +58,11 @@ public class ConsoleGame {
                 continue;
             }
             System.out.println(game.board);
+            if (game.isEnded()) break;
+
+            System.out.println("AI moving ...");
+            ai.makeMove(game);
+            System.out.println("\n" + game.board);
             if (game.isEnded()) break;
         }
         scanner.close();
