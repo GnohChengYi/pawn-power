@@ -38,28 +38,6 @@ public class Game {
         return true;
     }
 
-    private boolean isValidMove(int startX, int startY, int endX, int endY) {
-//        Log.d("Game", String.format("validating move (%d, %d) -> (%d, %d)", startX, startY,
-//        endX, endY));
-//        System.out.printf("Validating move (%d,%d) -> (%d,%d)\n", startX, startY, endX, endY);
-        Piece startPiece = board.getPiece(startX, startY);
-        if (startPiece == null) {
-//            Log.d("Game", "Start piece is null");
-            System.out.println("Start piece is null");
-            return false;
-        }
-        if (startPiece.color != currentColor) {
-//            Log.d("Game", "Not current color");
-            System.out.println("Not current color");
-            return false;
-        }
-        if (!board.isValidMove(startX, startY, endX, endY)) {
-//            Log.d("Game", "Invalid move");
-            return false;
-        }
-        return true;
-    }
-
     private boolean canQueen(Piece piece, int x, int y) {
         Pawn dummyPawn = new Pawn(Color.WHITE);
         if (piece.getSymbol() != dummyPawn.getSymbol()) return false;
@@ -68,5 +46,54 @@ public class Game {
         return false;
     }
 
-    // TODO check both color King whether checkmate
+    public boolean isEnded() {
+        if (hasValidMove()) {
+            System.out.println(currentColor + " to move");
+            return false;
+        }
+
+        if (board.isColorChecked(currentColor)) {
+            System.out.println(currentColor + " is checkmated!");
+        } else {
+            System.out.println(currentColor + " is stalemated!");
+        }
+
+        return true;
+    }
+
+    private boolean hasValidMove() {
+        for (int startX = 0; startX < Board.SIZE; startX++) {
+            for (int startY = 0; startY < Board.SIZE; startY++) {
+                for (int endX = 0; endX < Board.SIZE; endX++) {
+                    for (int endY = 0; endY < Board.SIZE; endY++) {
+                        if (isValidMove(startX, startY, endX, endY)) return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isValidMove(int startX, int startY, int endX, int endY) {
+//        Log.d("Game", String.format("validating move (%d, %d) -> (%d, %d)", startX, startY,
+//        endX, endY));
+//        System.out.printf("Validating move (%d,%d) -> (%d,%d)\n", startX, startY, endX, endY);
+        Piece startPiece = board.getPiece(startX, startY);
+        if (startPiece == null) {
+//            Log.d("Game", "Start piece is null");
+//            System.out.println("Start piece is null");
+            return false;
+        }
+        if (startPiece.color != currentColor) {
+//            Log.d("Game", "Not current color");
+//            System.out.println("Not current color");
+            return false;
+        }
+        if (!board.isValidMove(startX, startY, endX, endY)) {
+//            Log.d("Game", "Invalid move");
+//            System.out.println("Invalid move from board");
+            return false;
+        }
+        return true;
+    }
 }
