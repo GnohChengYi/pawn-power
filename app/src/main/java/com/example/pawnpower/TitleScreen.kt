@@ -2,7 +2,6 @@ package com.example.pawnpower
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,14 +19,11 @@ class TitleScreen : AppCompatActivity() {
             insets
         }
 
-//        val startGame = findViewById<View>(R.id.startButton) as Button
-//
-//        startGame.setOnClickListener {
-//            this@TitleScreen.startActivity(
-//                Intent(
-//                this@TitleScreen,
-//                GameScreen::class.java)
-//            )
-//        }
+        val startButton: Button = findViewById(R.id.startButton)
+
+        startButton.setOnClickListener {
+            val intent = Intent(this, GameScreen::class.java)
+            startActivity(intent)
+        }
     }
 }
