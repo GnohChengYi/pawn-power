@@ -19,9 +19,9 @@ class TitleScreen : AppCompatActivity() {
             insets
         }
 
-        val startButton: Button = findViewById(R.id.startButton)
+        val newGameButton: Button = findViewById(R.id.newGameButton)
 
-        startButton.setOnClickListener {
+        newGameButton.setOnClickListener {
             val intent = Intent(this, GameScreen::class.java)
             startActivity(intent)
         }

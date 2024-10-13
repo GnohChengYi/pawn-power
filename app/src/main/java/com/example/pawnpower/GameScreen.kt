@@ -1,9 +1,12 @@
 package com.example.pawnpower
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -449,6 +452,22 @@ class GameScreen : AppCompatActivity() {
 
         deleteButton.setOnClickListener {
             gameScreen.deletePiece(selectedSquare)
+        }
+
+        // Start Game
+
+        val startButton: ImageButton = findViewById(R.id.startButton)
+        val selectPiecesBar: LinearLayout = findViewById(R.id.selectPiecesBar)
+        val setupBottomBar: LinearLayout = findViewById(R.id.setupBottomBar)
+        val descriptionText: TextView = findViewById(R.id.descriptionText)
+
+        startButton.setOnClickListener {
+            gameScreen.validateSetup()
+            if (gameScreen.canStart) {
+                selectPiecesBar.visibility = View.GONE
+                setupBottomBar.visibility = View.GONE
+                descriptionText.setText(getString(R.string.game_on))
+            }
         }
     }
 }

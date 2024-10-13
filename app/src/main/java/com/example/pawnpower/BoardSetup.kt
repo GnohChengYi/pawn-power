@@ -16,6 +16,7 @@ class BoardSetup (val gs: GameScreen) {
     private var isWhite: Boolean = true
 
     var currentPiece: String = "pawn"
+    var canStart: Boolean = false
 
     fun setSide() {
         isWhite = !isWhite
@@ -66,5 +67,10 @@ class BoardSetup (val gs: GameScreen) {
 
     fun deletePiece(selectedSquare: ImageView) {
         selectedSquare.setImageDrawable(null)
+    }
+
+    fun validateSetup() {
+        // TODO
+        canStart = true
     }
 }
