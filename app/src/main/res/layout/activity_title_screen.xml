@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginTop="100dp"
-        android:contentDescription="Pawn Power Logo"
+        android:contentDescription="@string/pawn_power_logo"
         app:layout_constraintBottom_toTopOf="@+id/pawnPowerTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,21 +26,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Pawn Power"
-        android:textColor="#FFFFFF"
+        android:text="@string/pawn_power"
+        android:textColor="@color/colorBoardLight"
         android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintBottom_toTopOf="@+id/newGameButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pawnPowerLogo" />
 
     <Button
-        android:id="@+id/startButton"
+        android:id="@+id/newGameButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Start"
-        android:textColor="#6B6B6B"
+        android:text="@string/new_game"
+        android:textColor="@color/backgroundGrey"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/creditsButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,13 +53,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Credits"
-        android:textColor="#6B6B6B"
+        android:text="@string/credits"
+        android:textColor="@color/backgroundGrey"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton" />
+        app:layout_constraintTop_toBottomOf="@+id/newGameButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
