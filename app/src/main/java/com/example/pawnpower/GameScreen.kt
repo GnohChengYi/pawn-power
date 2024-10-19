@@ -92,6 +92,10 @@ class GameScreen : AppCompatActivity() {
             imageView.setOnClickListener {
                 selectedSquare = imageView
                 boardSetup.addPiece(imageView)
+                pointsText.text = buildString {
+                    append("Points: ")
+                    append(boardSetup.pointsLeft)
+                }
             }
         }
 
@@ -99,6 +103,10 @@ class GameScreen : AppCompatActivity() {
 
         deleteButton.setOnClickListener {
             boardSetup.deletePiece(selectedSquare)
+            pointsText.text = buildString {
+                append("Points: ")
+                append(boardSetup.pointsLeft)
+            }
         }
 
         // Start Game
