@@ -37,21 +37,21 @@ public class Game {
     private boolean canQueen(Piece piece, int y) {
         Pawn dummyPawn = new Pawn(Color.WHITE);
         if (piece.getSymbol() != dummyPawn.getSymbol()) return false;
-        if (piece.color == Color.WHITE) return y == Board.SIZE - 1;
-        if (piece.color == Color.BLACK) return y == 0;
+        if (piece.color == Color.WHITE) return y == 0;
+        if (piece.color == Color.BLACK) return y == Board.SIZE - 1;
         return false;
     }
 
     public boolean isEnded() {
         if (hasValidMove()) {
-            System.out.println(currentColor + " to move");
+//            System.out.println(currentColor + " to move");
             return false;
         }
 
         if (board.isColorChecked(currentColor)) {
-            System.out.println(currentColor + " is checkmated!");
+//            System.out.println(currentColor + " is checkmated!");
         } else {
-            System.out.println(currentColor + " is stalemated!");
+//            System.out.println(currentColor + " is stalemated!");
         }
 
         return true;

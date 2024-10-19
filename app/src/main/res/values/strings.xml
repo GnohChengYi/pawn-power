@@ -18,4 +18,6 @@
     <string name="initial_points">Points: 39</string>
     <string name="start_button">Start button</string>
     <string name="game_on">Game On!</string>
+    <string name="white_wins">White wins!</string>
+    <string name="end">End</string>
 </resources>

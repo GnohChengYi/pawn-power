@@ -4,7 +4,7 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 
-class BoardSetup (val gs: GameScreen) {
+class BoardSetup (val gs: GameScreen, val game: Game) {
     private val pawnSelect: ImageView = gs.findViewById(R.id.selectPawnImage)
     private val knightSelect: ImageView = gs.findViewById(R.id.selectKnightImage)
     private val bishopSelect: ImageView = gs.findViewById(R.id.selectBishopImage)
@@ -13,14 +13,15 @@ class BoardSetup (val gs: GameScreen) {
     private val kingSelect: ImageView = gs.findViewById(R.id.selectKingImage)
     private val sideSelect: Button = gs.findViewById(R.id.whiteBlackButton)
 
-    private var isWhite: Boolean = true
+    internal var color: Color = Color.WHITE
 
     var currentPiece: String = "pawn"
     var canStart: Boolean = false
 
     fun setSide() {
-        isWhite = !isWhite
-        if (isWhite) {
+        color = if ((color == Color.WHITE)) Color.BLACK else Color.WHITE
+
+        if (color == Color.WHITE) {
             pawnSelect.setImageResource(R.drawable.w_pawn)
             knightSelect.setImageResource(R.drawable.w_knight)
             bishopSelect.setImageResource(R.drawable.w_bishop)
@@ -44,29 +45,68 @@ class BoardSetup (val gs: GameScreen) {
     }
 
     fun addPiece(selectedSquare: ImageView) {
-        if (isWhite) {
+        val square: Square = selectedSquare.tag as Square
+        if (color == Color.WHITE) {
             when (currentPiece) {
-                "pawn" -> selectedSquare.setImageResource(R.drawable.w_pawn)
-                "knight" -> selectedSquare.setImageResource(R.drawable.w_knight)
-                "bishop" -> selectedSquare.setImageResource(R.drawable.w_bishop)
-                "rook" -> selectedSquare.setImageResource(R.drawable.w_rook)
-                "queen" -> selectedSquare.setImageResource(R.drawable.w_queen)
-                "king" -> selectedSquare.setImageResource(R.drawable.w_king)
+                "pawn" -> {
+                    selectedSquare.setImageResource(R.drawable.w_pawn)
+                    game.board.setPiece(Pawn(Color.WHITE), square.x, square.y)
+                }
+                "knight" -> {
+                    selectedSquare.setImageResource(R.drawable.w_knight)
+                    game.board.setPiece(Knight(Color.WHITE), square.x, square.y)
+                }
+                "bishop" -> {
+                    selectedSquare.setImageResource(R.drawable.w_bishop)
+                    game.board.setPiece(Bishop(Color.WHITE), square.x, square.y)
+                }
+                "rook" -> {
+                    selectedSquare.setImageResource(R.drawable.w_rook)
+                    game.board.setPiece(Rook(Color.WHITE), square.x, square.y)
+                }
+                "queen" -> {
+                    selectedSquare.setImageResource(R.drawable.w_queen)
+                    game.board.setPiece(Queen(Color.WHITE), square.x, square.y)
+                }
+                "king" -> {
+                    selectedSquare.setImageResource(R.drawable.w_king)
+                    game.board.setPiece(King(Color.WHITE), square.x, square.y)
+                }
             }
         } else {
             when (currentPiece) {
-                "pawn" -> selectedSquare.setImageResource(R.drawable.b_pawn)
-                "knight" -> selectedSquare.setImageResource(R.drawable.b_knight)
-                "bishop" -> selectedSquare.setImageResource(R.drawable.b_bishop)
-                "rook" -> selectedSquare.setImageResource(R.drawable.b_rook)
-                "queen" -> selectedSquare.setImageResource(R.drawable.b_queen)
-                "king" -> selectedSquare.setImageResource(R.drawable.b_king)
+                "pawn" -> {
+                    selectedSquare.setImageResource(R.drawable.b_pawn)
+                    game.board.setPiece(Pawn(Color.BLACK), square.x, square.y)
+                }
+                "knight" -> {
+                    selectedSquare.setImageResource(R.drawable.b_knight)
+                    game.board.setPiece(Knight(Color.BLACK), square.x, square.y)
+                }
+                "bishop" -> {
+                    selectedSquare.setImageResource(R.drawable.b_bishop)
+                    game.board.setPiece(Bishop(Color.BLACK), square.x, square.y)
+                }
+                "rook" -> {
+                    selectedSquare.setImageResource(R.drawable.b_rook)
+                    game.board.setPiece(Rook(Color.BLACK), square.x, square.y)
+                }
+                "queen" -> {
+                    selectedSquare.setImageResource(R.drawable.b_queen)
+                    game.board.setPiece(Queen(Color.BLACK), square.x, square.y)
+                }
+                "king" -> {
+                    selectedSquare.setImageResource(R.drawable.b_king)
+                    game.board.setPiece(King(Color.BLACK), square.x, square.y)
+                }
             }
         }
     }
 
     fun deletePiece(selectedSquare: ImageView) {
         selectedSquare.setImageDrawable(null)
+        val square: Square = selectedSquare.getTag() as Square
+        game.board.removePiece(square.x, square.y)
     }
 
     fun validateSetup() {

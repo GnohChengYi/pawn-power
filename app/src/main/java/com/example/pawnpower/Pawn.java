@@ -33,6 +33,6 @@ public class Pawn extends Piece {
     }
 
     private int getDirection() {
-        return color == Color.WHITE ? +1 : -1;
+        return color == Color.WHITE ? -1 : +1;
     }
 }
