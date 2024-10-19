@@ -29,49 +29,49 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/R00"
+                    android:id="@+id/S00"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R10"
+                    android:id="@+id/S01"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R20"
+                    android:id="@+id/S02"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R30"
+                    android:id="@+id/S03"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R40"
+                    android:id="@+id/S04"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R50"
+                    android:id="@+id/S05"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R60"
+                    android:id="@+id/S06"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R70"
+                    android:id="@+id/S07"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
@@ -82,155 +82,49 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/R01"
+                    android:id="@+id/S10"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R11"
+                    android:id="@+id/S11"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R21"
+                    android:id="@+id/S12"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R31"
+                    android:id="@+id/S13"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R41"
+                    android:id="@+id/S14"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R51"
+                    android:id="@+id/S15"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R61"
+                    android:id="@+id/S16"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R71"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardLight" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/R02"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardLight" />
-
-                <ImageView
-                    android:id="@+id/R12"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardDark" />
-
-                <ImageView
-                    android:id="@+id/R22"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardLight" />
-
-                <ImageView
-                    android:id="@+id/R32"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardDark" />
-
-                <ImageView
-                    android:id="@+id/R42"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardLight" />
-
-                <ImageView
-                    android:id="@+id/R52"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardDark" />
-
-                <ImageView
-                    android:id="@+id/R62"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardLight" />
-
-                <ImageView
-                    android:id="@+id/R72"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardDark" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/R03"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardDark" />
-
-                <ImageView
-                    android:id="@+id/R13"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardLight" />
-
-                <ImageView
-                    android:id="@+id/R23"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardDark" />
-
-                <ImageView
-                    android:id="@+id/R33"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardLight" />
-
-                <ImageView
-                    android:id="@+id/R43"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardDark" />
-
-                <ImageView
-                    android:id="@+id/R53"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardLight" />
-
-                <ImageView
-                    android:id="@+id/R63"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@color/colorBoardDark" />
-
-                <ImageView
-                    android:id="@+id/R73"
+                    android:id="@+id/S17"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
@@ -241,49 +135,49 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/R04"
+                    android:id="@+id/S20"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R14"
+                    android:id="@+id/S21"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R24"
+                    android:id="@+id/S22"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R34"
+                    android:id="@+id/S23"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R44"
+                    android:id="@+id/S24"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R54"
+                    android:id="@+id/S25"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R64"
+                    android:id="@+id/S26"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R74"
+                    android:id="@+id/S27"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
@@ -294,49 +188,49 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/R05"
+                    android:id="@+id/S30"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R15"
+                    android:id="@+id/S31"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R25"
+                    android:id="@+id/S32"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R35"
+                    android:id="@+id/S33"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R45"
+                    android:id="@+id/S34"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R55"
+                    android:id="@+id/S35"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R65"
+                    android:id="@+id/S36"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R75"
+                    android:id="@+id/S37"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
@@ -347,49 +241,49 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/R06"
+                    android:id="@+id/S40"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R16"
+                    android:id="@+id/S41"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R26"
+                    android:id="@+id/S42"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R36"
+                    android:id="@+id/S43"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R46"
+                    android:id="@+id/S44"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R56"
+                    android:id="@+id/S45"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R66"
+                    android:id="@+id/S46"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R76"
+                    android:id="@+id/S47"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
@@ -400,49 +294,155 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/R07"
+                    android:id="@+id/S50"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R17"
+                    android:id="@+id/S51"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R27"
+                    android:id="@+id/S52"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R37"
+                    android:id="@+id/S53"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R47"
+                    android:id="@+id/S54"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R57"
+                    android:id="@+id/S55"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
 
                 <ImageView
-                    android:id="@+id/R67"
+                    android:id="@+id/S56"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardDark" />
 
                 <ImageView
-                    android:id="@+id/R77"
+                    android:id="@+id/S57"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardLight" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/S60"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardLight" />
+
+                <ImageView
+                    android:id="@+id/S61"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardDark" />
+
+                <ImageView
+                    android:id="@+id/S62"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardLight" />
+
+                <ImageView
+                    android:id="@+id/S63"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardDark" />
+
+                <ImageView
+                    android:id="@+id/S64"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardLight" />
+
+                <ImageView
+                    android:id="@+id/S65"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardDark" />
+
+                <ImageView
+                    android:id="@+id/S66"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardLight" />
+
+                <ImageView
+                    android:id="@+id/S67"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardDark" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/S70"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardDark" />
+
+                <ImageView
+                    android:id="@+id/S71"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardLight" />
+
+                <ImageView
+                    android:id="@+id/S72"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardDark" />
+
+                <ImageView
+                    android:id="@+id/S73"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardLight" />
+
+                <ImageView
+                    android:id="@+id/S74"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardDark" />
+
+                <ImageView
+                    android:id="@+id/S75"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardLight" />
+
+                <ImageView
+                    android:id="@+id/S76"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@color/colorBoardDark" />
+
+                <ImageView
+                    android:id="@+id/S77"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@color/colorBoardLight" />
@@ -453,12 +453,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#4D4D4D"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -471,7 +472,7 @@
             <TextView
                 android:id="@+id/pointsText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
@@ -480,6 +481,20 @@
                 android:text="@string/initial_points"
                 android:textAlignment="textEnd"
                 android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/endButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/end"
+                android:textAlignment="center"
+                android:textColor="@color/colorBoardDark"
                 android:textSize="24sp" />
 
         </LinearLayout>

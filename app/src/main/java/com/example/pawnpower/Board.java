@@ -18,13 +18,17 @@ public class Board {
         board[x][y] = piece;
     }
 
+    public void removePiece(int x, int y) {
+        board[x][y] = null;
+    }
+
     public Piece getPiece(int x, int y) {
         return board[x][y];
     }
 
     public boolean isValidMove(int startX, int startY, int endX, int endY) {
         if (isOutOfBoard(startX, startY) || isOutOfBoard(endX, endY)) {
-            System.out.println("Position is out of board");
+//            System.out.println("Position is out of board");
             return false;
         }
         if (startSameAsEnd(startX, startY, endX, endY)) {
@@ -33,7 +37,7 @@ public class Board {
         }
         Piece startPiece = getPiece(startX, startY);
         if (startPiece == null) {
-            System.out.println("No piece at start position");
+//            System.out.println("No piece at start position");
             return false;
         }
         // ignores castling
@@ -91,7 +95,7 @@ public class Board {
     public boolean isColorChecked(Color color) {
         int[] kingXY = getKingPosition(color);
         if (kingXY == null) {
-            System.out.println("Cannot find King of color " + color);
+//            System.out.println("Cannot find King of color " + color);
             return true;    // when no King, it's considered losing ~ always checked
         }
         int kingX = kingXY[0];

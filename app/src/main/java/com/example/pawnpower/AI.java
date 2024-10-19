@@ -31,6 +31,7 @@ public class AI {
     }
 
     public void makeMove(Game game) {
+        // TODO makeMove according to ai color
         ArrayList<int[]> validMoves = new ArrayList<>();
 
         for (int startX = 0; startX < Board.SIZE; startX++) {
