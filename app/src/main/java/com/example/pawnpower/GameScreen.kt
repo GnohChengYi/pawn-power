@@ -14,6 +14,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class GameScreen : AppCompatActivity() {
+    private lateinit var game: Game
+    private lateinit var boardSetup: BoardSetup
+    private lateinit var pieceSelectImageViews: List<ImageView>
+
     @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,44 +33,15 @@ class GameScreen : AppCompatActivity() {
         val endButton: Button = findViewById(R.id.endButton)
         endButton.visibility = View.GONE
 
-        val game: Game = Game()
-        val boardSetup = BoardSetup(this, game)
+        game = Game()
+        boardSetup = BoardSetup(this, game)
         val wbButton: Button = findViewById(R.id.whiteBlackButton)
 
         wbButton.setOnClickListener {
             boardSetup.setSide()
         }
 
-        val pawnSelect: ImageView = findViewById(R.id.selectPawnImage)
-        val knightSelect: ImageView = findViewById(R.id.selectKnightImage)
-        val bishopSelect: ImageView = findViewById(R.id.selectBishopImage)
-        val rookSelect: ImageView = findViewById(R.id.selectRookImage)
-        val queenSelect: ImageView = findViewById(R.id.selectQueenImage)
-        val kingSelect: ImageView = findViewById(R.id.selectKingImage)
-
-        pawnSelect.setOnClickListener {
-            boardSetup.currentPiece = "pawn"
-        }
-
-        knightSelect.setOnClickListener {
-            boardSetup.currentPiece = "knight"
-        }
-
-        bishopSelect.setOnClickListener {
-            boardSetup.currentPiece = "bishop"
-        }
-
-        rookSelect.setOnClickListener {
-            boardSetup.currentPiece = "rook"
-        }
-
-        queenSelect.setOnClickListener {
-            boardSetup.currentPiece = "queen"
-        }
-
-        kingSelect.setOnClickListener {
-            boardSetup.currentPiece = "king"
-        }
+        setUpPieceSelectImageView()
 
         val imageViewIds = buildList {
             for (rows in 0..7) {
@@ -121,7 +96,7 @@ class GameScreen : AppCompatActivity() {
             if (boardSetup.canStart) {
                 selectPiecesBar.visibility = View.GONE
                 setupBottomBar.visibility = View.GONE
-                descriptionText.setText(getString(R.string.game_on))
+                descriptionText.text = getString(R.string.game_on)
                 for (imageView in imageViews) {
                     imageView.setOnClickListener(null)
                 }
@@ -142,8 +117,8 @@ class GameScreen : AppCompatActivity() {
 //                }
 
                 var selectedPiece: ImageView = imageViews[0]
-                var fromSquare: Square = Square("S00")
-                var pieceSelected: Boolean = false
+                var fromSquare = Square("S00")
+                var pieceSelected = false
 
                 for (imageView in imageViews) {
                     imageView.setOnClickListener {
@@ -155,11 +130,16 @@ class GameScreen : AppCompatActivity() {
                             selectedPiece = imageView
                             fromSquare = square
                             pieceSelected = true
-                        } else if (pieceSelected && game.isValidMove(fromSquare.x, fromSquare.y,
-                                square.x, square.y)) {
+                        } else if (pieceSelected && game.isValidMove(
+                                fromSquare.x, fromSquare.y,
+                                square.x, square.y
+                            )
+                        ) {
                             // Make move
-                            game.makeMove(fromSquare.x, fromSquare.y,
-                                square.x, square.y)
+                            game.makeMove(
+                                fromSquare.x, fromSquare.y,
+                                square.x, square.y
+                            )
                             imageView.setImageDrawable(selectedPiece.drawable)
                             // TODO if pawn has become queen, update image
                             selectedPiece.setImageDrawable(null)
@@ -170,8 +150,8 @@ class GameScreen : AppCompatActivity() {
 //                            ai.makeMove(game)
                             // TODO Return move to affect frontend
 
-                            if (game.isEnded) {
-                                descriptionText.setText(getString(R.string.white_wins))
+                            if (game.isEnded()) {
+                                descriptionText.text = getString(R.string.white_wins)
                                 // TODO specify game end state
                                 endButton.visibility = View.VISIBLE
                                 pointsText.visibility = View.GONE
@@ -183,6 +163,38 @@ class GameScreen : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    private fun setUpPieceSelectImageView() {
+        val pawnSelect: ImageView = findViewById(R.id.selectPawnImage)
+        val knightSelect: ImageView = findViewById(R.id.selectKnightImage)
+        val bishopSelect: ImageView = findViewById(R.id.selectBishopImage)
+        val rookSelect: ImageView = findViewById(R.id.selectRookImage)
+        val queenSelect: ImageView = findViewById(R.id.selectQueenImage)
+        val kingSelect: ImageView = findViewById(R.id.selectKingImage)
+
+        pieceSelectImageViews =
+            listOf(pawnSelect, knightSelect, bishopSelect, rookSelect, queenSelect, kingSelect)
+
+        setPieceSelectListener(pawnSelect, "pawn")
+        setPieceSelectListener(knightSelect, "knight")
+        setPieceSelectListener(bishopSelect, "bishop")
+        setPieceSelectListener(rookSelect, "rook")
+        setPieceSelectListener(queenSelect, "queen")
+        setPieceSelectListener(kingSelect, "king")
+    }
+
+    private fun setPieceSelectListener(pieceSelect: ImageView, pieceName: String) {
+        // https://developer.android.com/reference/android/graphics/Color#LTGRAY
+        val colorGray = -3355444
+
+        pieceSelect.setOnClickListener {
+            pieceSelectImageViews.forEach { imageView ->
+                imageView.clearColorFilter()
+            }
+            boardSetup.currentPiece = pieceName
+            pieceSelect.setColorFilter(colorGray)
         }
     }
 }
