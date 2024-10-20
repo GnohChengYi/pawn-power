@@ -1,4 +1,4 @@
-package com.example.pawnpower
+package com.pawnpower
 
 import android.annotation.SuppressLint
 import android.os.Bundle
