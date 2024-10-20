@@ -1,4 +1,4 @@
-package com.example.pawnpower
+package com.pawnpower
 
 import android.widget.Button
 import android.widget.ImageView

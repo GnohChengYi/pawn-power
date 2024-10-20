@@ -1,6 +1,4 @@
-package com.example.pawnpower;
-
-//import androidx.annotation.NonNull;
+package com.pawnpower;
 
 public class Bishop extends Piece {
     public Bishop(Color color) {

@@ -1,4 +1,4 @@
-package com.example.pawnpower;
+package com.pawnpower;
 
 import java.util.ArrayList;
 import java.util.List;

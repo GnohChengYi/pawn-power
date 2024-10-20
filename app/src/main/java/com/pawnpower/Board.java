@@ -1,4 +1,4 @@
-package com.example.pawnpower;
+package com.pawnpower;
 
 public class Board {
     public static final int SIZE = 8;

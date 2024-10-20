@@ -1,4 +1,4 @@
-package com.example.pawnpower;
+package com.pawnpower;
 
 public class Square {
     private final int x;
