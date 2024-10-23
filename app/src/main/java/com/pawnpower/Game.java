@@ -1,4 +1,4 @@
-package com.example.pawnpower;
+package com.pawnpower;
 
 //import android.util.Log;
 

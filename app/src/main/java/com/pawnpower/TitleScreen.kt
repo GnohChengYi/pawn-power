@@ -1,4 +1,4 @@
-package com.example.pawnpower
+package com.pawnpower
 
 import android.content.Intent
 import android.os.Bundle
