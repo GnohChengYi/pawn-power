@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -17,6 +18,11 @@ class GameScreen : AppCompatActivity() {
     private lateinit var game: Game
     private lateinit var boardSetup: BoardSetup
     private lateinit var pieceSelectImageViews: List<ImageView>
+    private lateinit var boardImageViews: List<ImageView> // Stores all board square ImageViews
+    private lateinit var pointsText: TextView
+
+    // Dedicated member for the square selected during the setup phase
+    private var selectedSetupSquare: ImageView? = null
 
     @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +35,7 @@ class GameScreen : AppCompatActivity() {
             insets
         }
 
-        val pointsText: TextView = findViewById(R.id.pointsText)
+        pointsText = findViewById(R.id.pointsText)
         val endButton: Button = findViewById(R.id.endButton)
         endButton.visibility = View.GONE
 
@@ -39,48 +45,20 @@ class GameScreen : AppCompatActivity() {
 
         wbButton.setOnClickListener {
             boardSetup.setSide()
+            clearSelectedSetupSquareHighlight()
+            selectedSetupSquare = null
         }
 
         setUpPieceSelectImageView()
-
-        val imageViewIds = buildList {
-            for (rows in 0..7) {
-                for (cols in 0..7) {
-                    add("S${rows}${cols}")
-                }
-            }
-        }
-
-        val imageViews = mutableListOf<ImageView>()
-
-        for (id in imageViewIds) {
-            val resId = resources.getIdentifier(id, "id", packageName)
-
-            val imageView: ImageView = findViewById(resId)
-            imageView.tag = Square(id)
-            imageViews.add(imageView)
-        }
-
-        var selectedSquare: ImageView = imageViews[0]
-
-        for (imageView in imageViews) {
-            imageView.setOnClickListener {
-                selectedSquare = imageView
-                boardSetup.addPiece(imageView)
-                pointsText.text = buildString {
-                    append("Points: ")
-                    append(boardSetup.pointsLeft)
-                }
-            }
-        }
+        setUpBoardSquaresForSetup()
 
         val deleteButton: ImageButton = findViewById(R.id.deleteButton)
-
         deleteButton.setOnClickListener {
-            boardSetup.deletePiece(selectedSquare)
-            pointsText.text = buildString {
-                append("Points: ")
-                append(boardSetup.pointsLeft)
+            selectedSetupSquare?.let { currentSelectedImageView ->
+                boardSetup.deletePiece(currentSelectedImageView)
+                updatePointsText()
+                clearSelectedSetupSquareHighlight()
+                selectedSetupSquare = null
             }
         }
 
@@ -94,71 +72,99 @@ class GameScreen : AppCompatActivity() {
         startButton.setOnClickListener {
             boardSetup.validateSetup()
             if (boardSetup.canStart) {
+                clearSelectedSetupSquareHighlight() // Clear any setup selection before starting
+                selectedSetupSquare = null
+
                 selectPiecesBar.visibility = View.GONE
                 setupBottomBar.visibility = View.GONE
                 descriptionText.text = getString(R.string.game_on)
-                for (imageView in imageViews) {
-                    imageView.setOnClickListener(null)
-                }
+                boardImageViews.forEach { it.setOnClickListener(null) }
 
-                // Play Chess
+                var selectedPieceImageViewDuringPlay: ImageView? = null
+                var fromSquareDuringPlay: Square? = null
+                var isPieceSelectedDuringPlay = false
 
-//                val ai: AI = AI()
-//
-//                ai.setUpPosition(
-//                    game,
-//                    if ((boardSetup.color == Color.WHITE)) Color.BLACK else Color.WHITE,
-//                    39)
-                // TODO Return ai setup to affect frontend
+                boardImageViews.forEach { boardSquareImageView ->
+                    boardSquareImageView.setOnClickListener innerClickListener@{ view ->
+                        val clickedSquareImageView = view as ImageView
+                        val squareTag =
+                            clickedSquareImageView.tag as? Square ?: return@innerClickListener
+                        val piece = game.board.getPiece(squareTag.x, squareTag.y)
 
-//                if (game.currentColor != boardSetup.color) {
-//                    // AI turn
-//                    ai.makeMove(game)
-//                }
+                        if (isPieceSelectedDuringPlay && fromSquareDuringPlay != null) {
+                            if (game.isValidMove(
+                                    fromSquareDuringPlay!!.x,
+                                    fromSquareDuringPlay!!.y,
+                                    squareTag.x,
+                                    squareTag.y
+                                )
+                            ) {
+                                game.makeMove(
+                                    fromSquareDuringPlay!!.x,
+                                    fromSquareDuringPlay!!.y,
+                                    squareTag.x,
+                                    squareTag.y
+                                )
+                                clickedSquareImageView.setImageDrawable(
+                                    selectedPieceImageViewDuringPlay?.drawable
+                                )
+                                selectedPieceImageViewDuringPlay?.setImageDrawable(null)
+                                selectedPieceImageViewDuringPlay?.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        this,
+                                        android.R.color.transparent
+                                    )
+                                )
 
-                var selectedPiece: ImageView = imageViews[0]
-                var fromSquare = Square("S00")
-                var pieceSelected = false
+                                isPieceSelectedDuringPlay = false
+                                selectedPieceImageViewDuringPlay = null
+                                fromSquareDuringPlay = null
 
-                for (imageView in imageViews) {
-                    imageView.setOnClickListener {
-                        val square: Square = imageView.tag as Square
-                        val piece = game.board.getPiece(square.x, square.y)
-//                        if (piece != null && piece.color == boardSetup.color) { // Use this instead of below when AI is ready
-                        if (piece != null) {
-                            // Select own piece
-                            selectedPiece = imageView
-                            fromSquare = square
-                            pieceSelected = true
-                        } else if (pieceSelected && game.isValidMove(
-                                fromSquare.x, fromSquare.y,
-                                square.x, square.y
-                            )
-                        ) {
-                            // Make move
-                            game.makeMove(
-                                fromSquare.x, fromSquare.y,
-                                square.x, square.y
-                            )
-                            imageView.setImageDrawable(selectedPiece.drawable)
-                            // TODO if pawn has become queen, update image
-                            selectedPiece.setImageDrawable(null)
-
-                            pieceSelected = false
-
-                            // AI turn
-//                            ai.makeMove(game)
-                            // TODO Return move to affect frontend
-
-                            if (game.isEnded()) {
-                                descriptionText.text = getString(R.string.white_wins)
-                                // TODO specify game end state
-                                endButton.visibility = View.VISIBLE
-                                pointsText.visibility = View.GONE
-                                endButton.setOnClickListener {
-                                    this.finish()
+                                if (game.isEnded()) {
+                                    descriptionText.text = getString(R.string.white_wins)
+                                    endButton.visibility = View.VISIBLE
+                                    pointsText.visibility = View.GONE
+                                    endButton.setOnClickListener {
+                                        this.finish()
+                                    }
+                                    boardImageViews.forEach { it.setOnClickListener(null) }
                                 }
+                            } else if (piece != null && piece.color == boardSetup.color) { // Selecting another of own pieces
+                                selectedPieceImageViewDuringPlay?.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        this,
+                                        android.R.color.transparent
+                                    )
+                                )
+                                selectedPieceImageViewDuringPlay = clickedSquareImageView
+                                fromSquareDuringPlay = squareTag
+                                selectedPieceImageViewDuringPlay?.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        this,
+                                        android.R.color.holo_green_light
+                                    )
+                                )
+                            } else {
+                                selectedPieceImageViewDuringPlay?.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        this,
+                                        android.R.color.transparent
+                                    )
+                                )
+                                isPieceSelectedDuringPlay = false
+                                selectedPieceImageViewDuringPlay = null
+                                fromSquareDuringPlay = null
                             }
+                        } else if (piece != null /* && piece.color == boardSetup.color */) { // Initial piece selection
+                            selectedPieceImageViewDuringPlay = clickedSquareImageView
+                            fromSquareDuringPlay = squareTag
+                            isPieceSelectedDuringPlay = true
+                            selectedPieceImageViewDuringPlay?.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    this,
+                                    android.R.color.holo_green_light
+                                )
+                            )
                         }
                     }
                 }
@@ -195,6 +201,59 @@ class GameScreen : AppCompatActivity() {
             }
             boardSetup.currentPiece = pieceName
             pieceSelect.setColorFilter(colorGray)
+        }
+    }
+
+    @SuppressLint("DiscouragedApi")
+    private fun setUpBoardSquaresForSetup() {
+        val imageViewIds = buildList {
+            for (rows in 0..7) {
+                for (cols in 0..7) {
+                    add("S${rows}${cols}")
+                }
+            }
+        }
+
+        val mutableImageViews = mutableListOf<ImageView>()
+        for (idString in imageViewIds) {
+            val resId = resources.getIdentifier(idString, "id", packageName)
+            if (resId != 0) {
+                val imageView: ImageView = findViewById(resId)
+                imageView.tag = Square(idString)
+                mutableImageViews.add(imageView)
+
+                imageView.setOnClickListener { view ->
+                    val clickedImageView = view as ImageView
+
+                    clearSelectedSetupSquareHighlight()
+                    selectedSetupSquare = clickedImageView
+                    highlightSelectedSetupSquare()
+
+                    // boardSetup.addPiece expects an ImageView
+                    boardSetup.addPiece(clickedImageView)
+                    updatePointsText()
+                }
+            }
+        }
+        boardImageViews = mutableImageViews.toList()
+    }
+
+    private fun clearSelectedSetupSquareHighlight() {
+        selectedSetupSquare?.setBackgroundColor(
+            ContextCompat.getColor(this, android.R.color.transparent)
+        )
+    }
+
+    private fun highlightSelectedSetupSquare() {
+        selectedSetupSquare?.setBackgroundColor(
+            ContextCompat.getColor(this, android.R.color.holo_blue_light)
+        )
+    }
+
+    private fun updatePointsText() {
+        pointsText.text = buildString {
+            append(getString(R.string.points_label))
+            append(boardSetup.pointsLeft)
         }
     }
 }

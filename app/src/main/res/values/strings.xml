@@ -4,6 +4,7 @@
     <string name="black">Black</string>
     <string name="clear_board_button">Clear Board button</string>
     <string name="delete_button">Delete button</string>
+    <string name="points_label">Points: </string>
     <string name="king">King</string>
     <string name="queen">Queen</string>
     <string name="rook">Rook</string>
