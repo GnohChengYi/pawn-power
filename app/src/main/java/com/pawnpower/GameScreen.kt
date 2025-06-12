@@ -224,35 +224,29 @@ class GameScreen : AppCompatActivity() {
 
     @SuppressLint("DiscouragedApi")
     private fun setUpBoardSquaresForSetup() {
-        val imageViewIds = buildList {
-            for (rows in 0..7) {
-                for (cols in 0..7) {
-                    add("S${rows}${cols}")
-                }
-            }
-        }
+        val precomputedImageViewIds = arrayOf(
+            R.id.S00, R.id.S01, R.id.S02, R.id.S03, R.id.S04, R.id.S05, R.id.S06, R.id.S07,
+            R.id.S10, R.id.S11, R.id.S12, R.id.S13, R.id.S14, R.id.S15, R.id.S16, R.id.S17,
+            R.id.S20, R.id.S21, R.id.S22, R.id.S23, R.id.S24, R.id.S25, R.id.S26, R.id.S27,
+            R.id.S30, R.id.S31, R.id.S32, R.id.S33, R.id.S34, R.id.S35, R.id.S36, R.id.S37,
+            R.id.S40, R.id.S41, R.id.S42, R.id.S43, R.id.S44, R.id.S45, R.id.S46, R.id.S47,
+            R.id.S50, R.id.S51, R.id.S52, R.id.S53, R.id.S54, R.id.S55, R.id.S56, R.id.S57,
+            R.id.S60, R.id.S61, R.id.S62, R.id.S63, R.id.S64, R.id.S65, R.id.S66, R.id.S67,
+            R.id.S70, R.id.S71, R.id.S72, R.id.S73, R.id.S74, R.id.S75, R.id.S76, R.id.S77
+        )
 
         val mutableImageViews = mutableListOf<ImageView>()
-        for (idString in imageViewIds) {
-            val resId = resources.getIdentifier(idString, "id", packageName)
+        for ((index, resId) in precomputedImageViewIds.withIndex()) {
             if (resId != 0) {
                 val imageView: ImageView = findViewById(resId)
-                imageView.tag = Square(idString)
+                imageView.tag = Square("S${index / 8}${index % 8}")
                 mutableImageViews.add(imageView)
 
                 // Set initial alternating background color
                 restoreOriginalSquareColor(imageView) // Use the helper to set initial color
 
                 imageView.setOnClickListener { view ->
-                    val clickedImageView = view as ImageView
-
-                    clearSelectedSetupSquareHighlight()
-                    selectedSetupSquare = clickedImageView
-                    highlightSelectedSetupSquare()
-
-                    // boardSetup.addPiece expects an ImageView
-                    boardSetup.addPiece(clickedImageView)
-                    updatePointsText()
+                    handleSquareClick(view as ImageView)
                 }
             }
         }
@@ -279,6 +273,15 @@ class GameScreen : AppCompatActivity() {
         } else {
             colorBoardDarkResId
         }
+    }
+
+    private fun handleSquareClick(clickedImageView: ImageView) {
+        clearSelectedSetupSquareHighlight()
+        selectedSetupSquare = clickedImageView
+        highlightSelectedSetupSquare()
+        // boardSetup.addPiece expects an ImageView
+        boardSetup.addPiece(clickedImageView)
+        updatePointsText()
     }
 
     private fun clearSelectedSetupSquareHighlight() {
