@@ -18,11 +18,16 @@ class GameScreen : AppCompatActivity() {
     private lateinit var game: Game
     private lateinit var boardSetup: BoardSetup
     private lateinit var pieceSelectImageViews: List<ImageView>
-    private lateinit var boardImageViews: List<ImageView> // Stores all board square ImageViews
+    private lateinit var boardImageViews: List<ImageView>
     private lateinit var pointsText: TextView
-
-    // Dedicated member for the square selected during the setup phase
     private var selectedSetupSquare: ImageView? = null
+
+    // Store the color resource IDs for convenience
+    private var colorBoardDarkResId: Int = 0
+    private var colorBoardLightResId: Int = 0
+    private var colorHighlightSetupResId: Int = 0
+    private var colorHighlightPlayResId: Int = 0
+
 
     @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +39,12 @@ class GameScreen : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Initialize color resource IDs
+        colorBoardDarkResId = R.color.colorBoardDark
+        colorBoardLightResId = R.color.colorBoardLight
+        colorHighlightSetupResId = android.R.color.holo_blue_light
+        colorHighlightPlayResId = android.R.color.holo_green_light
 
         pointsText = findViewById(R.id.pointsText)
         val endButton: Button = findViewById(R.id.endButton)
@@ -57,7 +68,8 @@ class GameScreen : AppCompatActivity() {
             selectedSetupSquare?.let { currentSelectedImageView ->
                 boardSetup.deletePiece(currentSelectedImageView)
                 updatePointsText()
-                clearSelectedSetupSquareHighlight()
+                // When deleting, the square is no longer selected, restore its original color
+                restoreOriginalSquareColor(currentSelectedImageView)
                 selectedSetupSquare = null
             }
         }
@@ -78,7 +90,12 @@ class GameScreen : AppCompatActivity() {
                 selectPiecesBar.visibility = View.GONE
                 setupBottomBar.visibility = View.GONE
                 descriptionText.text = getString(R.string.game_on)
-                boardImageViews.forEach { it.setOnClickListener(null) }
+                // Clear setup phase listeners and restore original colors if any were highlighted
+                boardImageViews.forEach {
+                    it.setOnClickListener(null)
+                    // Ensure all squares are back to their original color before starting gameplay
+                    restoreOriginalSquareColor(it)
+                }
 
                 var selectedPieceImageViewDuringPlay: ImageView? = null
                 var fromSquareDuringPlay: Square? = null
@@ -109,12 +126,12 @@ class GameScreen : AppCompatActivity() {
                                     selectedPieceImageViewDuringPlay?.drawable
                                 )
                                 selectedPieceImageViewDuringPlay?.setImageDrawable(null)
-                                selectedPieceImageViewDuringPlay?.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        this,
-                                        android.R.color.transparent
+                                // Restore original color of the source square
+                                selectedPieceImageViewDuringPlay?.let {
+                                    restoreOriginalSquareColor(
+                                        it
                                     )
-                                )
+                                }
 
                                 isPieceSelectedDuringPlay = false
                                 selectedPieceImageViewDuringPlay = null
@@ -130,27 +147,28 @@ class GameScreen : AppCompatActivity() {
                                     boardImageViews.forEach { it.setOnClickListener(null) }
                                 }
                             } else if (piece != null && piece.color == boardSetup.color) { // Selecting another of own pieces
-                                selectedPieceImageViewDuringPlay?.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        this,
-                                        android.R.color.transparent
+                                selectedPieceImageViewDuringPlay?.let {
+                                    restoreOriginalSquareColor(
+                                        it
                                     )
-                                )
+                                }
                                 selectedPieceImageViewDuringPlay = clickedSquareImageView
                                 fromSquareDuringPlay = squareTag
+                                // Highlight new selection
                                 selectedPieceImageViewDuringPlay?.setBackgroundColor(
                                     ContextCompat.getColor(
                                         this,
-                                        android.R.color.holo_green_light
+                                        colorHighlightPlayResId
                                     )
                                 )
-                            } else {
-                                selectedPieceImageViewDuringPlay?.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        this,
-                                        android.R.color.transparent
+                            } else { // Invalid move or clicking empty square, so deselect
+                                // Restore original color of previously selected piece's square
+                                selectedPieceImageViewDuringPlay?.let {
+                                    restoreOriginalSquareColor(
+                                        it
                                     )
-                                )
+                                }
+
                                 isPieceSelectedDuringPlay = false
                                 selectedPieceImageViewDuringPlay = null
                                 fromSquareDuringPlay = null
@@ -162,7 +180,7 @@ class GameScreen : AppCompatActivity() {
                             selectedPieceImageViewDuringPlay?.setBackgroundColor(
                                 ContextCompat.getColor(
                                     this,
-                                    android.R.color.holo_green_light
+                                    colorHighlightPlayResId
                                 )
                             )
                         }
@@ -222,6 +240,9 @@ class GameScreen : AppCompatActivity() {
                 imageView.tag = Square(idString)
                 mutableImageViews.add(imageView)
 
+                // Set initial alternating background color
+                restoreOriginalSquareColor(imageView) // Use the helper to set initial color
+
                 imageView.setOnClickListener { view ->
                     val clickedImageView = view as ImageView
 
@@ -238,15 +259,41 @@ class GameScreen : AppCompatActivity() {
         boardImageViews = mutableImageViews.toList()
     }
 
+    // Helper function to restore the original background color of a square
+    private fun restoreOriginalSquareColor(imageView: ImageView) {
+        val square = imageView.tag as? Square
+        square?.let {
+            imageView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    getOriginalSquareColorResId(it)
+                )
+            )
+        }
+    }
+
+    // Helper function to get the original color of a square
+    private fun getOriginalSquareColorResId(square: Square): Int {
+        return if ((square.x + square.y) % 2 == 0) {
+            colorBoardLightResId
+        } else {
+            colorBoardDarkResId
+        }
+    }
+
     private fun clearSelectedSetupSquareHighlight() {
-        selectedSetupSquare?.setBackgroundColor(
-            ContextCompat.getColor(this, android.R.color.transparent)
-        )
+        // Now, instead of setting to transparent, restore its original color
+        selectedSetupSquare?.let {
+            restoreOriginalSquareColor(it)
+        }
     }
 
     private fun highlightSelectedSetupSquare() {
         selectedSetupSquare?.setBackgroundColor(
-            ContextCompat.getColor(this, android.R.color.holo_blue_light)
+            ContextCompat.getColor(
+                this,
+                colorHighlightSetupResId
+            ) // Use the defined highlight color
         )
     }
 
