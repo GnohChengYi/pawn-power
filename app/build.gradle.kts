@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.pawnpower"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.pawnpower"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 5
         versionName = "0.2.2"
 
